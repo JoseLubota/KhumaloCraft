@@ -1,0 +1,20 @@
+﻿@model KhumaloCraft.Models.userTBL
+@{
+    ViewData["Title"] = "Sign Up";
+}
+<div class="text-center" style="padding-top:40px ; padding-bottom:40px;">
+    <h1>About</h1>
+</div>
+
+
+<body>
+
+    <form action="About" method="post">
+        <p>Please enter your name and last name: </p>
+        <input type="text" name="userName" placeholder="name" required />
+        <input type="text" name="surname" placeholder="surname" required />
+        <input type="text" name="email" placeholder="example.com" required />
+        <button type="submit">Submit</button>
+    </form>
+
+</body>

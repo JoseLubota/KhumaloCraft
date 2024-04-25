@@ -1,0 +1,217 @@
+﻿@model KhumaloCraft.Models.productTBL
+@{
+    ViewData["Title"] = "MyWork";
+}
+
+
+<div class="text-center" style="padding-top:40px ; padding-bottom:40px;">
+    <h1>My Work</h1>
+</div>
+
+
+<body>
+
+    <form action="MyWork" method="post">
+        <p>Insert new products</p>
+        <input type="text" name="ProductName" placeholder="Name" required />
+
+        <p>Price</p>
+        <input type="text" name="ProductPrice" placeholder="Price" required />
+
+        <p>Category</p>
+        <input type="text" name="ProductCategory" placeholder="Category" required />
+
+        <p>Availability</p>
+        <input type="text" name="ProductAvailability" placeholder="Availability" required />
+
+        <button type="submit">Submit</button>
+
+    </form>
+
+</body>
+
+
+
+    <section class=products-section>
+        <div class="products-container">
+
+                <!-- ///////////////...Product type 1...//////////////////////////////// -->
+    <h1 class="product-header">Pottery and ceramic</h1>
+
+    <div class="products-type-container">
+        <div class="product-item">
+            <div class="product-item-title">
+                <h2>Handmade bowls</h2>
+            </div>
+
+            <img src="https://lakegeorgeoliveoilco.com/wp-content/uploads/2021/11/IMG_6833-scaled.jpg" />
+            <div class="product-item-price">
+                <p>Price R480.00</p>
+            </div>
+        </div>
+
+
+        <div class="product-item">
+            <div class="product-item-title">
+                <h2>Plates</h2>
+            </div>
+            <img src="https://media.takealot.com/covers_images/5c2eb7008ff8438b998d9410caaeadb5/s-zoom.file" />
+            <div class="product-item-price">
+                <p>Price R600.00</p>
+            </div>
+        </div>
+
+
+
+        <div class="product-item">
+            <div class="product-item-title">
+                <h2>Vases</h2>
+            </div>
+            <img src="https://media.takealot.com/covers_images/1b045517d65740acbc3cd464ee05932b/s-zoom.file" />
+            <div class="product-item-price">
+                <p>Price R2200.00</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!--///////////// Product type 2//////////////////////// -->
+
+    <h1 class="product-header">Jewelry</h1>
+
+    <div class="products-type-container">
+
+        <div class="product-item">
+
+            <div class="product-item-title">
+                <h2>Handcrafter necklaces</h2>
+            </div>
+
+            <img src="https://www.pichulik.com/cdn/shop/files/laetitianecklacebeigeappletealPICLAE-N-BG-AP-TLHR_5000x.png?v=1708348941" />
+
+            <div class="product-item-price">
+                <p>Price R1260.00</p>
+            </div>
+
+        </div>
+
+        <div class="product-item">
+            <div class="product-item-title">
+                <h2>Bracelets Earrings</h2>
+            </div>
+            <img src="https://www.pichulik.com/cdn/shop/files/alphaearringsaquapinkPICALP-E-AQ-PKHR_5000x.jpg?v=1708346879" />
+            <div class="product-item-price">
+                <p>Price R750.00</p>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ///////////// Product type 3//////////////////////// -->
+
+    <h1 class="product-header">Textiles</h1>
+
+    <div class="products-type-container">
+
+        <div class="product-item">
+            <div class="product-item-title">
+                <h2>Handwoven scarves</h2>
+            </div>
+            <img src="https://canary.contestimg.wish.com/api/webimage/657ac27e1de293eb92f82f20-large.jpg?cache_buster=09fa6f2e1f38e66b458521a05a84a045" />
+            <div class="product-item-price">
+                <p> Price R400.00</p>
+            </div>
+        </div>
+
+        <div class="product-item">
+            <div class="product-item-title">
+                <h2>Blankets</h2>
+            </div>
+            <img src="https://assets.woolworthsstatic.co.za/Shaggy-Fleece-Blanket-180x150cm-GREY-507591454.jpg?V=Eu70&o=eyJidWNrZXQiOiJ3dy1vbmxpbmUtaW1hZ2UtcmVzaXplIiwia2V5IjoiaW1hZ2VzL2VsYXN0aWNlcmEvcHJvZHVjdHMvaGVyby8yMDI0LTAyLTI3LzUwNzU5MTQ1NF9HUkVZX2hlcm8uanBnIn0&q=75" />
+            <div class="product-item-price">
+                <p> Price R350.00</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ///////////// Product type 4//////////////////////// -->
+    <h1 class="product-header"> 4.Woodworking</h1>
+    <div class="products-type-container">
+
+        <div class="product-item">
+            <div class="product-item-title">
+                <h2>Hand-carved sculptures</h2>
+            </div>
+            <img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRlDQTINvPwuWNkkbBFJU-mv9XhK8Zpc2I41djsGm2lBJDzYOAtH3YH0ZnLOtDiP1UgLrt2TmdUn8uUMdwucwePyeVKig1gJCl-6seMjPfimx8jWRou-NhREA&usqp=CAE" />
+            <div class="product-item-price">
+                <p>Price R520.00</p>
+            </div>
+        </div>
+
+        <div class="product-item">
+            <div class="product-item-title">
+                <h2>Wooden Bench</h2>
+            </div>
+            <img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQbnGOn6w2WQ7e2-FDosW7B22MK-wq9mCVKFtLL0gTe3BF_JJvXorcfr-N-ltWPc7MpLGQ0safwZpvWliaPiaxLvc1uMDido3uT1-yg4yq1q9oGB1RefwX1vQ&usqp=CAE" />
+            <div class="product-item-price">
+                <p> Price R14000.00</p>
+            </div>
+        </div>
+
+        <div class="product-item">
+            <div class="product-item-title">
+                <h2>Kitchen Utensils Kit</h2>
+            </div>
+            <img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcTcZAGjA49GXsHiBRmBBcXaajHnVSfhXLatOnRG1GKyWYvdYfNiIp90UAtLRXEwZ4WOpVf70Dq7La_SkL_k5xKqbc93vZDKQHfs4J50Gwk&usqp=CAE" />
+            <div class="product-item-price">
+                <p>Price R1500.00</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ///////////// Product type 5 //////////////////////// -->
+    <h1 class="product-header">5.Paper crafts</h1>
+    <div class="products-type-container">
+
+        <div class="product-item">
+            <div class="product-item-title">
+                <h2>Handmake cards</h2>
+            </div>
+            <img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQmRtLuszDFVgj45nWKyANOek0QbY7IlTocayEM0m7-TYM8uNeqiSKxxqx5fDk5lG2UT3_AwJgEUKLtVCWST4OmCL6KG4y32XY-r6ry2T0&usqp=CAE" />
+            <div class="product-item-price">
+                <p>Price R220.00</p>
+            </div>
+        </div>
+
+        <div class="product-item">
+            <div class="product-item-title">
+                <h2>DIY Journaling Kit</h2>
+            </div>
+            <img src="https://media.takealot.com/covers_images/271be0e4ac784b559b2335e67208f2b2/s-pdpxl.file" />
+            <div class="product-item-price">
+                <p>Price R400.00</p>
+            </div>
+        </div>
+
+        <div class="product-item">
+            <div class="product-item-title">
+                <h2>Pikachu Origami</h2>
+            </div>
+            <img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcR3-sh7bqt8PZDINH1W5nglMcBtU4nDWEE1aaMA2gsCYMbuRYM1weZx-ddGR_yJ3gM2kfQrS-K33v5BU90AYkwbvE6KQEYYoYtitsjVe143GBxUzHjUMaKz&usqp=CAE" />
+            <div class="product-item-price">
+                <p>Price R400.00</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ///////////// Product type 5 //////////////////////// -->
+
+    <h1 class="product-header">More Products Are Soon...</h1>
+
+        </div>
+        <! -- /////////////////////////////////////////////////////////// -->
+
+
+    </section>
+        <! -- /////////////////////////////////////////////////////////// -->
