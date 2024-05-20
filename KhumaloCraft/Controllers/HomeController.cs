@@ -7,17 +7,22 @@ namespace KhumaloCraft.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IHttpContextAccessor httpContextAccessor)
         {
             _logger = logger;
+            _httpContextAccessor = httpContextAccessor;
         }
-        public IActionResult Index(int userID)
+        public IActionResult Index()
         {
             List<productTBL> products;
             products = productTBL.GetAllProducts();
+            int? userID = _httpContextAccessor.HttpContext.Session.GetInt32("userID");
+            
             ViewData["Products"] = products;
             ViewData["UserID"] = userID;
+            
             return View();
         }
 
@@ -39,12 +44,6 @@ namespace KhumaloCraft.Controllers
         {
             return View();
         }
-        public IActionResult Order()
-        {
-            return View();
-        }
-
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = "MyWork";
 }
-
+<section class="page-section">
 
 <div class="text-center" style="padding-top:40px ; padding-bottom:40px;">
     <h1>My Work</h1>
@@ -10,23 +10,41 @@
 
 
 <body>
+    <p>Fill the form bellow to enter new products</p>
+    <div class="form-container">
+            <form action="MyWork" method="post">
+                <div class="input-field">  
+                    <input type="text" name="ProductName" required />
+                    <label>Name</label>
 
-    <form action="MyWork" method="post">
-        <p>Insert new products</p>
-        <input type="text" name="ProductName" placeholder="Name" required />
+                </div>
 
-        <p>Price</p>
-        <input type="text" name="ProductPrice" placeholder="Price" required />
 
-        <p>Category</p>
-        <input type="text" name="ProductCategory" placeholder="Category" required />
+                <div class="input-field">
+                    <input type="text" name="ProductPrice"  required />
+                    <label>Price</label>
+                </div>
 
-        <p>Availability</p>
-        <input type="text" name="ProductAvailability" placeholder="Availability" required />
+                
+                <div class="input-field">     
+                    <input type="text" name="ProductCategory" required />
+                    <label>Category</label>
+                </div>
 
-        <button type="submit">Submit</button>
+                
+                <div class="input-field">
+                    <input type="text" name="ProductAvailability"  required />
+                    <label>Availability</label>
+                </div>
+                <div class="buttom-field">
+                    <button type="submit">Submit</button>
+                </div>
 
-    </form>
+                
+            </form>
+
+    </div>
+    
 
 </body>
 
@@ -215,3 +233,4 @@
 
     </section>
         <! -- /////////////////////////////////////////////////////////// -->
+</section>

@@ -1,0 +1,55 @@
+﻿.order-header {
+    font-size: 3em;
+    margin-top: 0;
+    text-align: center;
+    padding-top: 20px;
+}
+.table-user-header {
+    font-size: 2em;
+    margin: 0 10px 20px 10px;
+    text-align: left;
+    padding-top: 20px;
+}
+.table-user-container {
+    margin-top: 40px;
+}
+.table-user {
+    color: black;
+    border: 2px white solid;
+    margin: 10px 5px 10px 5px;
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.table-user th {
+    padding-left: 10px;
+}
+.table-user tr {
+    border: 1px white solid;       
+}
+.table-product {
+    color: white;
+}
+.table-user-body {
+    color: white;
+}
+.title {
+    margin-top: 0;
+    text-align: center;
+    padding-top: 60px;
+    padding-bottom: 20px;
+}
+.table-product {
+    color: black;
+    border: 2px red solid;
+    margin: 10px 5px 10px 5px;
+    width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+    height: 200px;
+
+}
+.table-product tr {
+    border: 1px crimson solid;
+}

@@ -2,7 +2,7 @@
 using System.Data.SqlClient;
 namespace KhumaloCraft.Models
 {
-    public class ProductDisplayModel
+    public class ProductDisplayModel : Controller
     {
         public int ProductID { get; set; }
         public string ProductName { get; set; }

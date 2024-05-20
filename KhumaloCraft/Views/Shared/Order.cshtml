@@ -1,0 +1,94 @@
+﻿@model (List<KhumaloCraft.Models.TransactionTBL> productDetails, List<KhumaloCraft.Models.TransactionTBL> UserDetails )
+
+@{
+    ViewData["Title"] = "Order";
+}  
+<body>
+    <div class="page-section">
+        <h1 class="order-header">Order Details</h1>
+
+
+        <p>Fill the form below to see your order details</p>
+        <div class="form-container">
+            <form asp-controller="Transaction" asp-action="Order" method="post">
+
+                <div class="input-field">
+                    <input type="text" name="userName" value="@Model.UserDetails.FirstOrDefault()?.userName" required />
+                    <label>Name</label>
+                </div>
+
+                <div class="input-field">
+                    <input type="text" name="surname" value="@Model.UserDetails.FirstOrDefault()?.surname" required />
+                    <label>Surname</label>
+                </div>
+
+                <div class="input-field">
+                    <input type="text" name="email" value="@Model.UserDetails.FirstOrDefault()?.email" required />
+                    <label>Email</label>
+                </div>
+
+                <div class="buttom-field">
+                    <button type="submit">Search Order</button>
+                </div>
+            </form>
+
+        </div>
+
+        <h3 class="title"> User Details</h3>
+        <div class="table-user-container">
+            <table class="table-user">
+                <tbody class="table-user-body">
+                    @foreach (var user in Model.UserDetails)
+                    {
+                        <tr>
+                            <th>ID </th>
+                            <td>@user.userID</td>
+                        </tr>
+                        <tr>
+                            <th>Name </th>
+                            <td>@user.userName</td>
+                        </tr>
+                        <tr>
+                            <th>Surname</th>
+                            <td>@user.surname</td>
+                        </tr>
+                        <tr>
+                            <th>Email</th>
+                            <td>@user.email</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+
+
+        <h3 class="title"> Product Details</h3>
+        <table class="table-product">
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                </tr>
+
+            </thead>
+            <tbody>
+                @foreach (var products in Model.productDetails)
+                {
+                    <tr>
+                        <td>@products.productName </td>
+                        <td>@products.productCategory</td>
+                        <td>R.@products.productPrice</td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+
+    </div>
+
+</body>
+
+    

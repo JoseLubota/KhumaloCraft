@@ -4,25 +4,26 @@ using System.Data.SqlClient;
 
 namespace KhumaloCraft.Models
 {
-    public class OrderDisplayModel
+    public class OrderDisplayModel : Controller
     {
         public int orderID { get; set; }
         public int userID { get; set; }
         public int productID { get; set; }
+        public string userName { get; set; }
+        public string surname { get; set; }
+        public string email { get; set; }
+        public string productName { get; set; }
+        public decimal productPrice { get; set; }
+        public string productCategory { get; set; }
         public OrderDisplayModel() { }
-        public OrderDisplayModel(int orderID, int userID,int productID)
-        {
-            this.orderID = orderID;
-            this.userID = userID;
-            this.productID = productID;
-        }
-       public static List<OrderDisplayModel> ViewOrderDetails() 
+
+       public static List<OrderDisplayModel>SelectMyOrder(string userName, string surname, string email) 
         {
             List<OrderDisplayModel> orderDetails = new List<OrderDisplayModel>();
             string con_string = "Server=tcp:clvd-sql-server.database.windows.net,1433;Initial Catalog=clvd-db;Persist Security Info=False;User ID=Jose;Password=2004Fr@ney;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30";
             using(SqlConnection con = new SqlConnection(con_string))
             {
-                string sql = "SELECT * FROM TransactionTable";
+                string sql = "SELECT TransactionTable.orderID, userTBL.userName, userTBL.surname, userTBL.email, productTBL.productName, productTBL.productPrice,  productTBL.productCategory\r\nFROM TransactionTable\r\nINNER JOIN userTBL ON TransactionTable.userID = userTBL.userID\r\nINNER JOIN productTBL ON TransactionTable.productID = productTBL.productID\r\nWHERE userTBL.userName = @userName AND  userTBL.surname = @surname AND userTBL.email = @email ";
                 SqlCommand cmd = new SqlCommand(sql, con);
                 con.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
@@ -30,8 +31,12 @@ namespace KhumaloCraft.Models
                 {
                     OrderDisplayModel order = new OrderDisplayModel();
                     order.orderID = Convert.ToInt32(reader["orderID"]);
-                    order.productID = Convert.ToInt32(reader["productID"]);
-                    order.userID = Convert.ToInt32(reader["user_id"]);
+                    order.userName = Convert.ToString(reader["userName"]);
+                    order.surname = Convert.ToString(reader["surname"]);
+                    order.productName = Convert.ToString(reader["productName"]);
+                    order.productPrice = Convert.ToDecimal(reader["productPrice"]);
+                    order.productCategory = Convert.ToString(reader["productCategory"]);
+
                     orderDetails.Add(order);
                 }
                 reader.Close();
@@ -39,5 +44,5 @@ namespace KhumaloCraft.Models
             return orderDetails;
            
         }
-    }
+    } 
 }

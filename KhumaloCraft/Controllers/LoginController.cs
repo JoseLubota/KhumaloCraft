@@ -16,9 +16,11 @@ namespace KhumaloCraft.Controllers
             int userID = loginModel.SelectUser(email, name);
             if (userID != -1)
             {
+                //Store user ID section
+                HttpContext.Session.SetInt32("userID", userID);
                 //
-                //
-                return RedirectToAction("Index", "Home", new { userID = userID });
+               // return RedirectToAction("Index", "Home", new { userID = userID });
+               return RedirectToAction("Index", "Home");
             }
             else
             {

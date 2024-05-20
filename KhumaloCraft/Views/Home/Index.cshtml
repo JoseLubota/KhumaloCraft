@@ -5,47 +5,48 @@
     var userID = ViewData["userID"];
     var products = ViewData["Products"] as List<KhumaloCraft.Models.productTBL>;
 }
+<section class="page-section">
+    <div class="text-center">
+        <h1 class="display-4">Welcome</h1>
+        <p>Khumalo Craft Emporium is a global e-commerce platform showcasing handcrafted products owned by Mr. James Khumalo.  We have an objective that is connecting artists worldwide with discerning audiences. </p>
+    </div>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+    @if (userID != null)
+    {
+        <p>User ID: @userID</p>
+    }
 
-<h2>Welcome to the Home Page!</h2>
+    <h1 class="order-header">All Products</h1>
 
-@if (userID != null)
-{
-    <p>User ID: @userID</p>
-}
-
-<h2>All Products</h2>
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Category</th>
-            <th>Availability</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var product in products)
-        {
+    <table class="table">
+        <thead>
             <tr>
-                <td>@product.productName</td>
-                <td>@product.productPrice</td>
-                <td>@product.productCategory</td>
-                <td>@product.productAvailability</td>
-                <td>
-                    <form asp-controller="Transaction" asp-action="PlaceOrder" method="post">
-                        <input type="hidden" name="userID" value="@userID" />
-                        <input type="hidden" name="productID" value="@product.productID" />
-                        <button type="submit">Place Order</button>
-                    </form>
-                </td>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Category</th>
+                <th>Availability</th>
+                <th>Action</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var product in products)
+            {
+                <tr>
+                    <td>@product.productName</td>
+                    <td>@product.productPrice</td>
+                    <td>@product.productCategory</td>
+                    <td>@product.productAvailability</td>
+                    <td>
+                        <form asp-controller="Transaction" asp-action="PlaceOrder" method="post">
+                            <input type="hidden" name="userID" value="@userID" />
+                            <input type="hidden" name="productID" value="@product.productID" />
+                            <button type="submit">Place Order</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+</section>
