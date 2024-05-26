@@ -9,7 +9,7 @@ namespace KhumaloCraft.Models
         public static SqlConnection con = new SqlConnection(conString);
 
         public string productName { get; set; }
-        public string productPrice { get; set; }
+        public decimal productPrice { get; set; }
         public string productCategory { get; set; }
         public string productAvailability { get; set; }
         public int productID { get; set; }
@@ -54,7 +54,7 @@ namespace KhumaloCraft.Models
                     productTBL product = new productTBL();
                     product.productID = Convert.ToInt32(rdr["productID"]);
                     product.productName = rdr["productName"].ToString();
-                    product.productPrice = rdr["productPrice"].ToString();
+                    product.productPrice = Convert.ToDecimal(rdr["productPrice"]);
                     product.productCategory = rdr["productCategory"].ToString();
                     product.productAvailability = rdr["productAvailability"].ToString();
 

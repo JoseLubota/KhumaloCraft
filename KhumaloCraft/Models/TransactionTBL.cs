@@ -17,17 +17,15 @@ namespace KhumaloCraft.Models
         public Decimal productPrice { get; set; }
         public string productCategory { get; set; }
 
-        public static List<TransactionTBL> getUserDetails(string userName, string surname, string email)
+        public static List<TransactionTBL> getUserDetails(int userID)
         {
             List<TransactionTBL> orderDetails = new List<TransactionTBL>();
             string con_string = "Server=tcp:clvd-sql-server.database.windows.net,1433;Initial Catalog=clvd-db;Persist Security Info=False;User ID=Jose;Password=2004Fr@ney;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30";
             using (SqlConnection con = new SqlConnection(con_string))
             {
-                string sql = "SELECT TOP 1 TransactionTable.orderID, userTBL.userName,  userTBL.userID, userTBL.surname, userTBL.email, productTBL.productName, productTBL.productPrice,  productTBL.productCategory\r\nFROM TransactionTable\r\nINNER JOIN userTBL ON TransactionTable.userID = userTBL.userID\r\nINNER JOIN productTBL ON TransactionTable.productID = productTBL.productID\r\nWHERE userTBL.userName = @userName AND  userTBL.surname = @surname AND userTBL.email = @email ";
+                string sql = "SELECT TOP 1 TransactionTable.orderID, userTBL.userName,  userTBL.userID, userTBL.surname, userTBL.email, productTBL.productName, productTBL.productPrice,  productTBL.productCategory\r\nFROM TransactionTable\r\nINNER JOIN userTBL ON TransactionTable.userID = userTBL.userID\r\nINNER JOIN productTBL ON TransactionTable.productID = productTBL.productID\r\nWHERE userTBL.userID = @userID";
                 SqlCommand cmd = new SqlCommand(sql, con);
-                cmd.Parameters.AddWithValue("@userName", userName);
-                cmd.Parameters.AddWithValue("@surname", surname);
-                cmd.Parameters.AddWithValue("@email", email);
+                cmd.Parameters.AddWithValue("@userID", userID);
                 con.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
@@ -57,17 +55,15 @@ namespace KhumaloCraft.Models
             return orderDetails;
 
         }
-        public static List<TransactionTBL> getProductDetails(string userName, string surname, string email)
+        public static List<TransactionTBL> getProductDetails(int userID)
         {
             List<TransactionTBL> orderDetails = new List<TransactionTBL>();
             string con_string = "Server=tcp:clvd-sql-server.database.windows.net,1433;Initial Catalog=clvd-db;Persist Security Info=False;User ID=Jose;Password=2004Fr@ney;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30";
             using (SqlConnection con = new SqlConnection(con_string))
             {
-                string sql = "SELECT  TransactionTable.orderID, userTBL.userName, userTBL.surname, userTBL.email, productTBL.productName, productTBL.productPrice,  productTBL.productCategory\r\nFROM TransactionTable\r\nINNER JOIN userTBL ON TransactionTable.userID = userTBL.userID\r\nINNER JOIN productTBL ON TransactionTable.productID = productTBL.productID\r\nWHERE userTBL.userName = @userName AND  userTBL.surname = @surname AND userTBL.email = @email ";
+                string sql = "SELECT  TransactionTable.orderID, userTBL.userID, userTBL.userName, userTBL.surname, userTBL.email, productTBL.productName, productTBL.productPrice,  productTBL.productCategory\r\nFROM TransactionTable\r\nINNER JOIN userTBL ON TransactionTable.userID = userTBL.userID\r\nINNER JOIN productTBL ON TransactionTable.productID = productTBL.productID\r\nWHERE userTBL.userID = @userID";
                 SqlCommand cmd = new SqlCommand(sql, con);
-                cmd.Parameters.AddWithValue("@userName", userName);
-                cmd.Parameters.AddWithValue("@surname", surname);
-                cmd.Parameters.AddWithValue("@email", email);
+                cmd.Parameters.AddWithValue("@userID", userID);
                 con.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())

@@ -8,6 +8,14 @@ namespace KhumaloCraft.Controllers
     public class TransactionController : Controller
     {
         public TransactionTBL myOrder = new TransactionTBL();
+        private readonly ILogger<HomeController> _logger;
+        private readonly IHttpContextAccessor _httpContextAccessor;
+
+          public TransactionController(ILogger<HomeController> logger, IHttpContextAccessor httpContextAccessor)
+        {
+            _logger = logger;
+            _httpContextAccessor = httpContextAccessor;
+        }
 
         [HttpPost]
         public ActionResult PlaceOrder(int userID, int productID)
@@ -40,11 +48,12 @@ namespace KhumaloCraft.Controllers
                     }
                 }
             }
-            catch (Exception ex)
+            catch
             {
                 // Log the exception or handle it appropriatly
                 // For now, return an error view or message
-                throw ex;
+                
+                return RedirectToAction("Index", "Home");
             }
         }
 
@@ -54,9 +63,16 @@ namespace KhumaloCraft.Controllers
             try
             {
                 List<TransactionTBL> userDetails;
-                userDetails = TransactionTBL.getUserDetails(userName, surname, email);
+                
+                int newUserID = -1;
+                int? userID = _httpContextAccessor.HttpContext.Session.GetInt32("userID");
+                if( userID != null)
+                {
+                  newUserID = Convert.ToInt32(userID);
+                }
+                userDetails = TransactionTBL.getUserDetails(newUserID);
                 List<TransactionTBL> productDetails;
-                productDetails = TransactionTBL.getProductDetails(userName, surname, email);
+                productDetails = TransactionTBL.getProductDetails(newUserID);
 
                 if (userDetails != null && productDetails != null)
                 {
@@ -76,11 +92,16 @@ namespace KhumaloCraft.Controllers
         [HttpGet]
         public IActionResult Order()
         {
+            int newUserID = -1;
             List<TransactionTBL> userDetails;
-            //int? userID = _httpContextAccessor.HttpContext.Session.GetInt32("userID");
-            userDetails = TransactionTBL.getUserDetails("","","");
+            int? userID = _httpContextAccessor.HttpContext.Session.GetInt32("userID");
+            if( userID != null)
+            {
+              newUserID = Convert.ToInt32(userID);
+            }
+            userDetails = TransactionTBL.getUserDetails(newUserID);
             List<TransactionTBL> productDetails;
-            productDetails = TransactionTBL.getProductDetails("", "", "");
+            productDetails = TransactionTBL.getProductDetails(newUserID );
             return View((productDetails, userDetails));
         }
 
