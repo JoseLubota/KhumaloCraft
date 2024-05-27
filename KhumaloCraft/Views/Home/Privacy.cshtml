@@ -1,35 +1,52 @@
-﻿@model KhumaloCraft.Models.userTBL
+﻿@model dynamic
+<!-- a@model KhumaloCraft.Models.userTBL --> 
 @{
     ViewData["Title"] = "Login";
+    var userID = ViewData["userID"];
 }
+
 <section class="page-section">
     <div class="text-center">
         <h1 class="display-4">Login</h1>
         <p>If you don't have an account <a href="https://localhost:7114/User/About">Sign Up  </a>for a new account.</p>
     </div>
 
-    <body>
-        <div class="form-container">
-            <form asp-controller="Login" asp-action="Privacy" method="post">
-              
-                <div class="input-field">
-                    <input type="text" name="name" required>
-                    <label>Name</label>
+        <body>
+            @if(Convert.ToInt32(userID) == 0)
+            {
+                <div class="form-container">
+                    <form asp-controller="Login" asp-action="Privacy" method="post">
+
+                        <div class="input-field">
+                            <input type="text" name="name" required>
+                            <label>Name</label>
+
+                        </div>
+                        <div class="input-field">
+                            <input type="text" name="email" required>
+                            <label>Email</label>
+                        </div>
+
+                        <div class="buttom-field">
+                            <button type="submit">Submit</button>
+                        </div>
+                    </form>
 
                 </div>
-                <div class="input-field">
-                    <input type="text" name="email" required>
-                    <label>Email</label>
+            }
+            else
+            {
+                <div class="form-container">
+                    <form asp-controller="Login" asp-action="Logout" method="post">
+                        <div class="buttom-field">
+                            <button type="submit">Logout</button>
+                        </div>
+                    </form>
+
                 </div>
+            }
 
-                <div class="buttom-field">
-                    <button type="submit">Submit</button>
-                </div>
-            </form>
-
-        </div>
-       
-    </body>
-
+        </body>
+        
 </section>
 

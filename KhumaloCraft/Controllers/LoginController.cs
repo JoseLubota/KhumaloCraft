@@ -5,10 +5,17 @@ namespace KhumaloCraft.Controllers
     public class LoginController : Controller
     {
         private readonly LoginModel login;
-        public LoginController()
+        private readonly ILogger<HomeController> _logger;
+        private readonly IHttpContextAccessor _httpContextAccessor;
+
+        public LoginController(ILogger<HomeController> logger, IHttpContextAccessor httpContextAccessor)
         {
             login = new LoginModel();
+            _logger = logger;
+            _httpContextAccessor = httpContextAccessor;
         }
+
+
         [HttpPost]
         public ActionResult Privacy(string email, string name)
         {
@@ -27,6 +34,29 @@ namespace KhumaloCraft.Controllers
                 //
                 return View("LoginFailed");
             }
+        }
+
+        [HttpPost]
+        public ActionResult Logout()
+        {
+            HttpContext.Session.Remove("userID");
+            return RedirectToAction("Privacy","Home");
+        
+        }
+
+        public IActionResult Privacy()
+        {
+            int? userID = _httpContextAccessor.HttpContext.Session.GetInt32("userID");
+            if (userID == null)
+            {
+                ViewData["userID"] = 0;
+            }
+            else
+            {
+                ViewData["userID"] = userID;
+            }
+
+            return View();
         }
     }
 }

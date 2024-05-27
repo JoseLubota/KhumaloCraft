@@ -14,39 +14,49 @@
     @if (userID != null)
     {
         <p>User ID: @userID</p>
+        <p>Go to <a href="/Home/Privacy">logout</a>  </p>
     }
+    
 
     <h1 class="order-header">All Products</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Price</th>
-                <th>Category</th>
-                <th>Availability</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var product in products)
-            {
+    @if(@Convert.ToInt32(userID) > 0)
+    {
+        <table class="table">
+            <thead>
                 <tr>
-                    <td>@product.productName</td>
-                    <td>R@($"{product.productPrice:F2}")</td>
-                    <td>@product.productCategory</td>
-                    <td>@product.productAvailability</td>
-                    <td>
-                        <form asp-controller="Transaction" asp-action="PlaceOrder" method="post">
-                            <input type="hidden" name="userID" value="@userID" />
-                            <input type="hidden" name="productID" value="@product.productID" />
-                            <button type="submit">Place Order</button>
-                        </form>
-                    </td>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Category</th>
+                    <th>Availability</th>
+                    <th>Place Order</th>
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach (var product in products)
+                {
+                    <tr>
+                        <td>@product.productName</td>
+                        <td>R@($"{product.productPrice:F2}")</td>
+                        <td>@product.productCategory</td>
+                        <td>@product.productAvailability</td>
+                        <td>
+                            <form asp-controller="Transaction" asp-action="PlaceOrder" method="post">
+                                <input type="hidden" name="userID" value="@userID" />
+                                <input type="hidden" name="productID" value="@product.productID" />
+                                <button type="submit">Place Order</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        
+    }
+    else
+    {
+        <p>Please <a href="/Home/Privacy">login</a> to order and to see the products</p>
+    }
+    
 
 
 </section>

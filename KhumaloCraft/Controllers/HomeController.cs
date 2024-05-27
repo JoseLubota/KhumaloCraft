@@ -25,7 +25,6 @@ namespace KhumaloCraft.Controllers
             
             return View();
         }
-
         public IActionResult About()
         {
             return View();
@@ -33,8 +32,11 @@ namespace KhumaloCraft.Controllers
 
         public IActionResult Privacy()
         {
+            int? userID = _httpContextAccessor.HttpContext.Session.GetInt32("userID");
+            ViewData["UserID"] = userID;
             return View();
         }
+      
 
         public IActionResult Contact()
         {
@@ -49,5 +51,6 @@ namespace KhumaloCraft.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+       
     }
 }

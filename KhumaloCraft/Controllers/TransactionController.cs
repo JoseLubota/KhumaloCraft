@@ -11,7 +11,7 @@ namespace KhumaloCraft.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
-          public TransactionController(ILogger<HomeController> logger, IHttpContextAccessor httpContextAccessor)
+        public TransactionController(ILogger<HomeController> logger, IHttpContextAccessor httpContextAccessor)
         {
             _logger = logger;
             _httpContextAccessor = httpContextAccessor;
@@ -56,7 +56,7 @@ namespace KhumaloCraft.Controllers
                 return RedirectToAction("Index", "Home");
             }
         }
-
+        /*
         [HttpPost]
         public ActionResult Order(string userName, string surname, string email)
         {
@@ -88,23 +88,25 @@ namespace KhumaloCraft.Controllers
                 throw ex ;
             }
      
-        }
-        [HttpGet]
+        }*/
         public IActionResult Order()
         {
-            int newUserID = -1;
-            List<TransactionTBL> userDetails;
             int? userID = _httpContextAccessor.HttpContext.Session.GetInt32("userID");
-            if( userID != null)
+            if( userID == null)
             {
-              newUserID = Convert.ToInt32(userID);
+              userID = 0;
             }
-            userDetails = TransactionTBL.getUserDetails(newUserID);
+            List<TransactionTBL> userDetails;
             List<TransactionTBL> productDetails;
-            productDetails = TransactionTBL.getProductDetails(newUserID );
+
+            userDetails = TransactionTBL.getUserDetails((int)userID);
+            productDetails = TransactionTBL.getProductDetails((int)userID );
+
+            ViewData["userID"] = userID;
             return View((productDetails, userDetails));
         }
 
         
     }
 }
+ 
