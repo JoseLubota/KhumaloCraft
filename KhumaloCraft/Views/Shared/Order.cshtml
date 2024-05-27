@@ -10,41 +10,50 @@
 
         @if (Convert.ToInt32(userID) == 0)
         {
-            <p>Please <a href="/Home/Privacy">login</a> to see your Orders </p>
-            /*
-            <p>Fill the form below to see your order details</p>
-            <div class="form-container">
-                <form asp-controller="Transaction" asp-action="Order" method="post">
-
-                    <div class="input-field">
-                        <input type="text" name="userName" value="@Model.UserDetails.FirstOrDefault()?.userName" required />
-                        <label>Name</label>
-                    </div>
-
-                    <div class="input-field">
-                        <input type="text" name="surname" value="@Model.UserDetails.FirstOrDefault()?.surname" required />
-                        <label>Surname</label>
-                    </div>
-
-                    <div class="input-field">
-                        <input type="text" name="email" value="@Model.UserDetails.FirstOrDefault()?.email" required />
-                        <label>Email</label>
-                    </div>
-
-                    <div class="buttom-field">
-                        <button type="submit">Search Order</button>
-                    </div>
-                </form>
-
-            </div>
-            */
-
-           
+            <p>Please <a href="/Home/Privacy">login</a> to see your Orders </p>           
             
         }
         else if (Convert.ToInt32(userID) == 1)
         {
-            <p>Content soon</p>
+            <p>Welcome Admin</p>
+            <p>Please see below all orders made</p>
+            <div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>User ID</th>
+                            <th>User Name</th>
+                            <th>User Surname</th>
+                            <th>Product Name</th>
+                            <th>Product Category</th>
+                            <th>Product Price</th>
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                        @foreach (var user in Model.UserDetails)
+                        {
+                            <tr>
+                                <td>@user.orderID</td>
+                                <td>@user.userID</td>
+                                <td>@user.userName</td>
+                                <td>@user.surname</td>
+                                <td>@user.productName </td>
+                                <td>@user.productCategory</td>
+                                <td>R@($"{user.productPrice:F2}")</td>
+
+                            </tr>
+                        }
+                    </tbody>
+
+                </table>
+
+
+            </div>
+
+            
+
 
         }
         else
@@ -67,7 +76,10 @@
                                 <th>Surname</th>
                                 <td>@user.surname</td>
                             </tr>
-                           
+                            <tr>
+                                <th>Email</th>
+                                <td>@user.email</td>
+                            </tr>
                         }
                     </tbody>
                 </table>
@@ -89,7 +101,8 @@
                         <tr>
                             <td>@products.productName </td>
                             <td>@products.productCategory</td>
-                            <td>R.@products.productPrice</td>
+                            <td>R@($"{products.productPrice:F2}")</td>
+                     
 
                         </tr>
                     }
