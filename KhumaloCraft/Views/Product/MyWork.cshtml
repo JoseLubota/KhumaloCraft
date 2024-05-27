@@ -47,7 +47,7 @@
 
     </div>
 
-        @if (userID != null)
+        @if (Convert.ToInt32(userID) > 0)
         {
             <p>User ID: @userID</p>
             <p>Go to <a href="/Home/Privacy">logout</a>  </p>
