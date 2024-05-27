@@ -56,39 +56,8 @@ namespace KhumaloCraft.Controllers
                 return RedirectToAction("Index", "Home");
             }
         }
-        /*
-        [HttpPost]
-        public ActionResult Order(string userName, string surname, string email)
-        {
-            try
-            {
-                List<TransactionTBL> userDetails;
-                
-                int newUserID = -1;
-                int? userID = _httpContextAccessor.HttpContext.Session.GetInt32("userID");
-                if( userID != null)
-                {
-                  newUserID = Convert.ToInt32(userID);
-                }
-                userDetails = TransactionTBL.getUserDetails(newUserID);
-                List<TransactionTBL> productDetails;
-                productDetails = TransactionTBL.getProductDetails(newUserID);
-
-                if (userDetails != null && productDetails != null)
-                {
-                    return View((productDetails,userDetails));
-                }
-                else
-                {
-                    return View();
-                }
-
-            } catch (Exception ex)
-            {
-                throw ex ;
-            }
-     
-        }*/
+        
+        
         public IActionResult Order()
         {
             int? userID = _httpContextAccessor.HttpContext.Session.GetInt32("userID");
